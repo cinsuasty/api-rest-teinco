@@ -1,3 +1,4 @@
+const { query } = require('express');
 var mongoose = require('mongoose');
 var dev_db_url="mongodb://localhost:27017/db_users";
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
@@ -28,5 +29,23 @@ exports.user_details=function(req,res){
             return next(err);
         }
         res.send({user});
+    });
+}
+
+exports.user_update = function(req,res){
+    User.findByIdAndUpdate(req.query.id,{$set:req.body},function(err,user){
+        if(err){
+            return next (err)
+        }
+        res.send({'message':'UPDATE'});
+    });
+}
+
+exports.user_delete = function(req,res){
+    User.findByIdAndRemove(req.query.id,function(err,user){
+        if(err){
+            return next (err)
+        }
+        res.send({'message':'DELETE'});
     });
 }

@@ -17,6 +17,11 @@ app.post('/user',(req,res)=>{db_manager.user_create(req,res)});
 //GET
 app.get('/user',(req,res)=>{db_manager.user_details(req,res)});
 
+//UPDATE
+app.put('/user',(req,res)=>{db_manager.user_update(req,res)});
+
+//DELETE
+app.delete('/user',(req,res)=>{db_manager.user_delete(req,res)});
 
 
-app.listen(8015,()=>{console.log('Api por puerto 8014')});
+app.listen(8016,()=>{console.log('Api por puerto 8016')});
